@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  我的项目1.2
+//
+//  Created by 冯学杰 on 16/1/7.
+//  Copyright © 2016年 冯学杰. All rights reserved.
+//
+#ifdef __OBJC__
+
+#define WEAKSELF typeof(self) __weak weakSelf = self;
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "LCFont.h"
+#import "UIUtil.h"
+#import "UIView+Extension.h"
+#import "UIImage+Uiimage.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UIView+SDAutoLayout.h"
+#import "UILabel+Extension.h"
+#import "UIButton+Extension.h"
+
+#endif
