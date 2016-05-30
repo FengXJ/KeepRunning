@@ -22,10 +22,9 @@
 		2AA98A781CFC00D500176F95 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A6F1CFC00D500176F95 /* UIView+Extension.m */; };
 		2AA98A7E1CFC033300176F95 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A7D1CFC033300176F95 /* MainViewController.m */; };
 		2AA98A811CFC035700176F95 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A801CFC035700176F95 /* MainNavigationController.m */; };
-		2AA98A881CFC06AB00176F95 /* ICSDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A851CFC06AB00176F95 /* ICSDrawerController.m */; };
-		2AA98A891CFC06AB00176F95 /* ICSDropShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A871CFC06AB00176F95 /* ICSDropShadowView.m */; };
 		2AA98A8E1CFC07DF00176F95 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A8D1CFC07DF00176F95 /* HomeViewController.m */; };
 		2AA98A911CFC080D00176F95 /* MainNavgationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A901CFC080D00176F95 /* MainNavgationBarView.m */; };
+		2AA98A951CFC1AD000176F95 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA98A941CFC1AD000176F95 /* SettingViewController.m */; };
 		48D3DA1637A3ADD027C195B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A74C1CB2A4E44F1D3D2C66 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -78,14 +77,12 @@
 		2AA98A7D1CFC033300176F95 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		2AA98A7F1CFC035700176F95 /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
 		2AA98A801CFC035700176F95 /* MainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
-		2AA98A841CFC06AB00176F95 /* ICSDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICSDrawerController.h; sourceTree = "<group>"; };
-		2AA98A851CFC06AB00176F95 /* ICSDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICSDrawerController.m; sourceTree = "<group>"; };
-		2AA98A861CFC06AB00176F95 /* ICSDropShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICSDropShadowView.h; sourceTree = "<group>"; };
-		2AA98A871CFC06AB00176F95 /* ICSDropShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICSDropShadowView.m; sourceTree = "<group>"; };
 		2AA98A8C1CFC07DF00176F95 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		2AA98A8D1CFC07DF00176F95 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		2AA98A8F1CFC080D00176F95 /* MainNavgationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavgationBarView.h; sourceTree = "<group>"; };
 		2AA98A901CFC080D00176F95 /* MainNavgationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavgationBarView.m; sourceTree = "<group>"; };
+		2AA98A931CFC1AD000176F95 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		2AA98A941CFC1AD000176F95 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		786AB29FA818F66FD522AFF8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C0A74C1CB2A4E44F1D3D2C66 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7664AA93E965AA01CDDE2CB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,25 +235,15 @@
 		2AA98A821CFC06AB00176F95 /* 第三方 */ = {
 			isa = PBXGroup;
 			children = (
-				2AA98A831CFC06AB00176F95 /* ICSDrawerController */,
 			);
 			path = "第三方";
-			sourceTree = "<group>";
-		};
-		2AA98A831CFC06AB00176F95 /* ICSDrawerController */ = {
-			isa = PBXGroup;
-			children = (
-				2AA98A841CFC06AB00176F95 /* ICSDrawerController.h */,
-				2AA98A851CFC06AB00176F95 /* ICSDrawerController.m */,
-				2AA98A861CFC06AB00176F95 /* ICSDropShadowView.h */,
-				2AA98A871CFC06AB00176F95 /* ICSDropShadowView.m */,
-			);
-			path = ICSDrawerController;
 			sourceTree = "<group>";
 		};
 		2AA98A8A1CFC06E200176F95 /* 侧滑 */ = {
 			isa = PBXGroup;
 			children = (
+				2AA98A931CFC1AD000176F95 /* SettingViewController.h */,
+				2AA98A941CFC1AD000176F95 /* SettingViewController.m */,
 			);
 			path = "侧滑";
 			sourceTree = "<group>";
@@ -467,11 +454,9 @@
 			files = (
 				2AA98A761CFC00D500176F95 /* UILabel+Extension.m in Sources */,
 				2AA98A781CFC00D500176F95 /* UIView+Extension.m in Sources */,
-				2AA98A891CFC06AB00176F95 /* ICSDropShadowView.m in Sources */,
 				2AA98A751CFC00D500176F95 /* UIImage+Uiimage.m in Sources */,
 				2AA98A7E1CFC033300176F95 /* MainViewController.m in Sources */,
 				2AA98A8E1CFC07DF00176F95 /* HomeViewController.m in Sources */,
-				2AA98A881CFC06AB00176F95 /* ICSDrawerController.m in Sources */,
 				2AA98A741CFC00D500176F95 /* UIButton+Extension.m in Sources */,
 				2AA98A771CFC00D500176F95 /* UIUtil.m in Sources */,
 				2AA98A911CFC080D00176F95 /* MainNavgationBarView.m in Sources */,
@@ -480,6 +465,7 @@
 				2AA98A811CFC035700176F95 /* MainNavigationController.m in Sources */,
 				2AA98A2C1CFBFC1100176F95 /* main.m in Sources */,
 				2AA98A721CFC00D500176F95 /* LCFont.m in Sources */,
+				2AA98A951CFC1AD000176F95 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

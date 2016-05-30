@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '408191A63BFB879364F2662A'
-               BlueprintName = 'LCProgressHUD'
+               BlueprintIdentifier = '051D6073567FC1C6A0419807'
+               BlueprintName = 'RESideMenu'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libLCProgressHUD.a'>
+               BuildableName = 'libRESideMenu.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

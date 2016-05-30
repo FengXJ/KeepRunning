@@ -3,4 +3,4 @@ pod 'LJWKeyboardHandler', '~> 1.0.3'
 pod 'LCProgressHUD'
 pod 'MJRefresh'
 pod 'MJExtension'
-
+pod 'RESideMenu', '~> 4.0.7'

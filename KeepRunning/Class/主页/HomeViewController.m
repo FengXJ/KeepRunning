@@ -7,10 +7,13 @@
 //
 
 #import "HomeViewController.h"
+#import "RESideMenu.h"
 
 @interface HomeViewController ()
 
-@property (strong , nonatomic)HoneNavView *navView;
+@property (strong , nonatomic) HoneNavView *navView;
+
+@property (strong, readonly, nonatomic) RESideMenu *sideMenuViewController;
 
 @end
 
@@ -26,7 +29,9 @@
         _navView = [[HoneNavView alloc]init];
         [self.view addSubview:_navView];
         _navView.sd_layout.topSpaceToView(self.view,0).leftEqualToView(self.view).rightEqualToView(self.view).heightIs(64);
+        [_navView.leftButton addTarget:self action:@selector(enterLeftVC) forControlEvents:UIControlEventTouchUpInside];
     }
+    
     return _navView;
 }
 - (void)didReceiveMemoryWarning {
@@ -34,6 +39,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (RESideMenu *)sideMenuViewController
+{
+    UIViewController *iter = self.parentViewController;
+    while (iter) {
+        if ([iter isKindOfClass:[RESideMenu class]]) {
+            return (RESideMenu *)iter;
+        } else if (iter.parentViewController && iter.parentViewController != iter) {
+            iter = iter.parentViewController;
+        } else {
+            iter = nil;
+        }
+    }
+    return nil;
+}
+
+-(void)enterLeftVC{
+    [self sideMenuViewController];
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
 
 @end
 
@@ -54,7 +78,7 @@
         self.leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [self.leftButton settitle:@"设置" titleColor:[UIColor whiteColor] font:14 image:nil];
         [self addSubview:self.leftButton];
-        self.leftButton.sd_layout.leftSpaceToView(self,15).bottomSpaceToView(self,13).heightIs(18).widthIs(40);
+        self.leftButton.sd_layout.leftSpaceToView(self,10).bottomSpaceToView(self,0).heightIs(44).widthIs(40);
         
         
         self.titleLabel = [UILabel setLabelTextColor:[UIColor whiteColor]  font:18];

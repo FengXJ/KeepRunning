@@ -10,6 +10,8 @@
 #import "MainNavigationController.h"
 #import "HomeViewController.h"
 
+#import "SettingViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -20,9 +22,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
+    
     HomeViewController *homeVC = [[HomeViewController alloc]init];
     MainNavigationController *mainNavVC = [[MainNavigationController alloc]initWithRootViewController:homeVC];
-    self.window.rootViewController = mainNavVC;
+    
+    SettingViewController *settingVC = [[SettingViewController alloc]init];
+    
+    
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:mainNavVC
+                                                                    leftMenuViewController:settingVC
+                                                                   rightMenuViewController:nil];
+    sideMenuViewController.delegate = self;
+    
+    self.window.rootViewController = sideMenuViewController;
     [self.window makeKeyAndVisible];
     
     return YES;
