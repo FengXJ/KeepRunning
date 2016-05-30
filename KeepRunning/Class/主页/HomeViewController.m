@@ -92,3 +92,33 @@
 }
 
 @end
+
+@implementation HoneBodyView{
+    
+}
+
+-(id)init{
+    
+    if (self = [super init]) {
+        
+        self.distanceLabel = [UILabel setLabelTextColor:LCHexColor(0x29292E) font:30];
+        
+        self.runTimesLabel = [UILabel setLabelTextColor:LCHexColor(0x29292E) font:20];
+        [self addSubview:self.runTimesLabel];
+        self.runTimesLabel.sd_layout.centerYEqualToView(self).leftSpaceToView(self,30).heightIs(20);
+        self.runTimesLabel.textAlignment = NSTextAlignmentCenter;
+        [self.runTimesLabel setSingleLineAutoResizeWithMaxWidth:100];
+    }
+    return self;
+}
+//@property (nonatomic , strong) UILabel *distanceLabel;//跑步距离 总公里
+//
+//@property (nonatomic , strong) UILabel *runTimesLabel;//跑步次数
+//
+//@property (nonatomic , strong) UILabel *totalTimeLabel;//跑步时间 总
+//
+//@property (nonatomic , strong) UILabel *calorieLabel;//燃烧的卡路里 总
+//
+//@property (nonatomic , strong) UIButton *starRunButton;//开始跑步按钮
+
+@end

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1C25DEEE1B3CE2C5AFF603F0'
+               BlueprintIdentifier = '9D177E755671838F29FF2B2B'
                BlueprintName = 'LJWKeyboardHandler'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libLJWKeyboardHandler.a'>

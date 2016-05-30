@@ -1,4 +1,4 @@
-pod 'SDAutoLayout','~>1.31'
+pod 'SDAutoLayout','~>2.1.1'
 pod 'LJWKeyboardHandler', '~> 1.0.3'
 pod 'LCProgressHUD'
 pod 'MJRefresh'

@@ -6,7 +6,7 @@ PODS:
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
   - RESideMenu (4.0.7)
-  - SDAutoLayout (1.53)
+  - SDAutoLayout (2.1.1)
 
 DEPENDENCIES:
   - LCProgressHUD
@@ -14,7 +14,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - RESideMenu (~> 4.0.7)
-  - SDAutoLayout (~> 1.31)
+  - SDAutoLayout (~> 2.1.1)
 
 SPEC CHECKSUMS:
   LCProgressHUD: 230627658e1d23a26f557aa8fad3be8181245d85
@@ -23,6 +23,6 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
-  SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
+  SDAutoLayout: c18678b6ae28c67d89cb132e770cfbac9ee20d25
 
 COCOAPODS: 0.39.0
