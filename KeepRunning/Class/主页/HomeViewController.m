@@ -13,6 +13,8 @@
 
 @property (strong , nonatomic) HoneNavView *navView;
 
+@property (strong , nonatomic) HoneBodyView *bodyView;
+
 @property (strong, readonly, nonatomic) RESideMenu *sideMenuViewController;
 
 @end
@@ -22,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self navView];
+    [self bodyView];
 }
 
 -(HoneNavView *)navView{
@@ -34,11 +37,24 @@
     
     return _navView;
 }
+
+-(HoneBodyView *)bodyView{
+    if (!_bodyView) {
+        _bodyView = [[HoneBodyView alloc]init];
+        [self.view addSubview:_bodyView];
+        _bodyView.sd_layout.topSpaceToView(_navView,0).rightEqualToView(self.view).leftEqualToView(self.view).bottomEqualToView(self.view);
+    }
+    
+    _bodyView.runTimesLabel.text = @"0";
+    
+    return _bodyView;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//侧滑
 - (RESideMenu *)sideMenuViewController
 {
     UIViewController *iter = self.parentViewController;
@@ -53,6 +69,7 @@
     }
     return nil;
 }
+
 
 -(void)enterLeftVC{
     [self sideMenuViewController];
@@ -101,13 +118,14 @@
     
     if (self = [super init]) {
         
-        self.distanceLabel = [UILabel setLabelTextColor:LCHexColor(0x29292E) font:30];
-        
-        self.runTimesLabel = [UILabel setLabelTextColor:LCHexColor(0x29292E) font:20];
+        self.runTimesLabel = [UILabel setLabelTextColor:LCHexColor(0x29292E) font:40];
+        [self.runTimesLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:40]];
         [self addSubview:self.runTimesLabel];
-        self.runTimesLabel.sd_layout.centerYEqualToView(self).leftSpaceToView(self,30).heightIs(20);
-        self.runTimesLabel.textAlignment = NSTextAlignmentCenter;
-        [self.runTimesLabel setSingleLineAutoResizeWithMaxWidth:100];
+        
+        self.runTimesLabel.sd_layout.centerYEqualToView(self).leftSpaceToView(self,60).heightIs(50);
+        [self.runTimesLabel setSingleLineAutoResizeWithMaxWidth:200];
+        
+        self.distanceLabel = [UILabel setLabelTextColor:LCHexColor(0x29292E) font:80];
     }
     return self;
 }
