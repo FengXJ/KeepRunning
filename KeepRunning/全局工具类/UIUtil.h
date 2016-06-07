@@ -22,7 +22,8 @@
 #define LCHexAColor(c,a) [UIColor colorWithRed:(c>>16)/255.0 green:(c>>8&0xff)/255.0 blue:(c&0xff)/255.0 alpha:a]
 
 //统一线的颜色
-#define LINECOLOR           LCRGBColor(227, 227, 227)
+//#define LINECOLOR           LCRGBColor(227, 227, 227)
+#define LINECOLOR  LCHexColor(0xb3b3b3)
 #define LineColor(a) [UIColor colorWithRed:(a>>16)/255.0 green:(a>>8&0xff)/255.0 blue:(a&0xff)/255.0 alpha:1]
 
 //屏幕相关
