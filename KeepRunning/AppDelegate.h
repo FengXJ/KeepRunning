@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "RESideMenu.h"
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,RESideMenuDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,RESideMenuDelegate>{
+    BMKMapManager* _mapManager;  
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

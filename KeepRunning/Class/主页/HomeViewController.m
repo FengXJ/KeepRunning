@@ -8,6 +8,8 @@
 
 #import "HomeViewController.h"
 #import "RESideMenu.h"
+#import "ReadyViewController.h"
+#import "iflyMSC/IFlyMSC.h"
 
 @interface HomeViewController ()
 
@@ -48,8 +50,14 @@
     _bodyView.runTimesLabel.text = @"0";
     _bodyView.totalTimeLabel.text = @"<1";
     _bodyView.calorieLabel.text = @"0";
+    [_bodyView.starRunButton addTarget:self action:@selector(enterRunningVC) forControlEvents:UIControlEventTouchUpInside];
     
     return _bodyView;
+}
+
+-(void)enterRunningVC{
+    ReadyViewController *runVC = [[ReadyViewController alloc]init];
+    [self.navigationController pushViewController:runVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

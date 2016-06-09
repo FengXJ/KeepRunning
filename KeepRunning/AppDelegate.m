@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MainNavigationController.h"
 #import "HomeViewController.h"
-
+#import "iflyMSC/IFlyMSC.h"
 #import "SettingViewController.h"
 
 @interface AppDelegate ()
@@ -37,8 +37,20 @@
     self.window.rootViewController = sideMenuViewController;
     [self.window makeKeyAndVisible];
     
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"AGgGd8hyH8IGcbmX53ZHGLUlY3K6F7kE"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
+    NSString *appid = @"57580e34";
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",appid];
+    [IFlySpeechUtility createUtility:initString];
+    
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
