@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "RESideMenu.h"
 #import "ReadyViewController.h"
-#import "iflyMSC/IFlyMSC.h"
+
 
 @interface HomeViewController ()
 

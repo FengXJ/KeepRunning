@@ -12,6 +12,7 @@
 #import "iflyMSC/IFlyMSC.h"
 #import "SettingViewController.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -44,9 +45,16 @@
         NSLog(@"manager start failed!");
     }
     
+    //设置sdk的log等级，log保存在下面设置的工作路径中
+    [IFlySetting setLogFile:LVL_ALL];
+    
+    //打开输出在console的log开关
+    [IFlySetting showLogcat:NO];
+    
     NSString *appid = @"57580e34";
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",appid];
     [IFlySpeechUtility createUtility:initString];
+    
     
     return YES;
 }

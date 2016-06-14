@@ -47,7 +47,7 @@ double const EPSILON = 0.0001;
     [self mapView];
     [self traceInstance];
     [self headView];
-//    [self createRedio];
+    [self createRedio];
     
 }
 
@@ -60,18 +60,19 @@ double const EPSILON = 0.0001;
 
     
     // 创建合成对象，为单例模式
-    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate = self;
-    //设置语音合成的参数
-    //语速,取值范围 0~100
-    [_iFlySpeechSynthesizer setParameter:@"0.1" forKey:[IFlySpeechConstant SPEED]];
-    //音量;取值范围 0~100
-    [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]];
-    //发音人,默认为”xiaoyan”;可以设置的参数列表可参考个 性化发音人列表
-    [_iFlySpeechSynthesizer setParameter:@"vixq" forKey: [IFlySpeechConstant VOICE_NAME]];
-    //音频采样率,目前支持的采样率有 16000 和 8000
-    [_iFlySpeechSynthesizer setParameter:@"16000" forKey: [IFlySpeechConstant SAMPLE_RATE]];
-    //启动合成会话
-//    [_iFlySpeechSynthesizer startSpeaking: @"3 2 1"];
+    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance];
+    _iFlySpeechSynthesizer.delegate = self;
+//    //设置语音合成的参数
+//    //语速,取值范围 0~100
+//    [_iFlySpeechSynthesizer setParameter:@"0.1" forKey:[IFlySpeechConstant SPEED]];
+//    //音量;取值范围 0~100
+//    [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]];
+//    //发音人,默认为”xiaoyan”;可以设置的参数列表可参考个 性化发音人列表
+//    [_iFlySpeechSynthesizer setParameter:@"vixq" forKey: [IFlySpeechConstant VOICE_NAME]];
+//    //音频采样率,目前支持的采样率有 16000 和 8000
+//    [_iFlySpeechSynthesizer setParameter:@"16000" forKey: [IFlySpeechConstant SAMPLE_RATE]];
+//    //启动合成会话
+////    [_iFlySpeechSynthesizer startSpeaking: @"3 2 1"];
     
     
 }
