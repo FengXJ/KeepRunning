@@ -25,8 +25,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self setBg];
     [self bodyView];
     [self navView];
+    
+}
+
+-(void)setBg{
+    
+    UIImageView *bgImgV= [[UIImageView alloc]init];
+    bgImgV.image = [UIImage imageNamed:@"bgImage"];
+    bgImgV.alpha = 0.4;
+    [self.view addSubview:bgImgV];
+    bgImgV.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0,0,0,0));
+    
 }
 
 -(HoneNavView *)navView{

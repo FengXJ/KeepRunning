@@ -43,8 +43,8 @@
     if (!_numberLabel) {
         _numberLabel = [[UILabel alloc]init];
         _numberLabel.textColor = [UIColor whiteColor];
-        _numberLabel.text = @"3";
-        _numberLabel.font = [LCFont systemFontOfSize:100];
+        _numberLabel.text = @"准备好了吗？";
+        _numberLabel.font = [LCFont systemFontOfSize:40];
         [self.view addSubview:_numberLabel];
         _numberLabel.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).heightIs(100);
         [_numberLabel setSingleLineAutoResizeWithMaxWidth:320];
@@ -72,7 +72,12 @@
     [_iFlySpeechSynthesizer startSpeaking: @"3"];
    
 }
-
+- (void) onSpeakBegin{
+    if (_timeCount == 2) {
+        _numberLabel.text = @"3";
+        _numberLabel.font = [LCFont systemFontOfSize:100];
+    }
+}
 - (void)onCompleted:(IFlySpeechError *) error{
     
     if (_timeCount == 0) {
@@ -94,15 +99,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

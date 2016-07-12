@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "RealReachability.h"
 
 @interface MainViewController ()
 
@@ -19,7 +20,59 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     [self setBg];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkChanged:)
+                                                 name:kRealReachabilityChangedNotification
+                                               object:nil];
 
+}
+
+- (void)networkChanged:(NSNotification *)notification
+{
+    RealReachability *reachability = (RealReachability *)notification.object;
+    ReachabilityStatus status = [reachability currentReachabilityStatus];
+    ReachabilityStatus previousStatus = [reachability previousReachabilityStatus];
+    NSLog(@"networkChanged, currentStatus:%@, previousStatus:%@", @(status), @(previousStatus));
+    
+    if (status == RealStatusNotReachable)
+    {
+        [LCProgressHUD showMessage:@"网络无连接"];   // 网络无连接
+    }
+    
+    if (status == RealStatusViaWiFi)
+    {
+         [LCProgressHUD showMessage:@"已切换至wifi环境"];   // wifi
+    }
+    
+    if (status == RealStatusViaWWAN)
+    {
+        [LCProgressHUD showMessage:@"已切换至WWAN环境"];   // WWAN
+    }
+    
+    WWANAccessType accessType = [GLobalRealReachability currentWWANtype];
+    
+    if (status == RealStatusViaWWAN)
+    {
+        if (accessType == WWANType2G)
+        {
+            [LCProgressHUD showMessage:@"当前2G网络"];   // 2G
+        }
+        else if (accessType == WWANType3G)
+        {
+            [LCProgressHUD showMessage:@"当前3G网络"];   // 3G
+        }
+        else if (accessType == WWANType4G)
+        {
+            [LCProgressHUD showMessage:@"当前4网络"];   // 4G
+        }
+        else
+        {
+            [LCProgressHUD showMessage:@"已切换至WWAN环境"];   // WWAN iOS6
+        }
+    }
+    
+    
 }
 
 -(void)setBg{

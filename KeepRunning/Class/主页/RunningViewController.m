@@ -23,9 +23,10 @@ NSString *const AK = @"AGgGd8hyH8IGcbmX53ZHGLUlY3K6F7kE";//此处填写您在API
 NSString *const MCODE = @"https---github.com-FengXJ.KeepRunning";//此处填写您申请iOS类型ak时填写的安全码
 double const EPSILON = 0.0001;
 
-@interface RunningViewController ()<ApplicationServiceDelegate,BMKMapViewDelegate,IFlySpeechSynthesizerDelegate>{
+@interface RunningViewController ()<ApplicationServiceDelegate,BMKMapViewDelegate,IFlySpeechSynthesizerDelegate,BMKLocationServiceDelegate,ApplicationEntityDelegate>{
     BOOL isOpenRedio;
     IFlySpeechSynthesizer       * _iFlySpeechSynthesizer;
+    BMKLocationService* _locService;
 }
 
 @property (nonatomic , strong) BMKMapView *mapView;
@@ -34,21 +35,26 @@ double const EPSILON = 0.0001;
 
 @property (nonatomic , strong) RunningHeadView* headView;
 
+@property (nonatomic , strong) UIButton *locBtn;
+
 @end
 
 @implementation RunningViewController
+
+dispatch_queue_t global_queue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     isOpenRedio = YES;
-    
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
     [self mapView];
     [self traceInstance];
     [self headView];
     [self createRedio];
-    
+//    [self openLocService];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,32 +104,69 @@ double const EPSILON = 0.0001;
     if (!_traceInstance) {
         //使用鹰眼SDK第一步必须先实例化BTRACE对象
         self.traceInstance =[[BTRACE alloc] initWithAk: AK mcode:MCODE serviceId: serviceId entityName: @"1" operationMode: 2];
+        _mapView.mapType = BMKMapTypeStandard;
+        //开始追踪，异步执行
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            BOOL intervalSetRet = [_traceInstance setInterval:2 packInterval:10];
+            [[BTRACEAction shared] startTrace:self trace:_traceInstance];
+            
+        });
+        //视图加载之后就请求实时位置
+        [self queryEntityList];
     }
-
-    //开始追踪，异步执行
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[BTRACEAction shared] startTrace:self trace:_traceInstance];
-    });
     return _traceInstance;
+}
+
+- (void)queryEntityList {
+    dispatch_async(global_queue, ^{
+        [[BTRACEAction shared] queryEntityList:self serviceId:serviceId entityNames:@"1" columnKey:nil activeTime:0 returnType:0 pageSize:0 pageIndex:0];
+    });
+}
+
+-(void)onStartTrace:(NSInteger)errNo errMsg:(NSString *)errMsg{
+    NSLog(@"startTrace: %@", errMsg);
+    NSString* no = [NSString stringWithFormat:@"%ld",(long)errNo];
+
 }
 -(BMKMapView *)mapView{
     if (!_mapView) {
-        BMKMapView* mapView = [[BMKMapView alloc]init];
-        [self.view addSubview:mapView];
-        mapView.sd_layout.topSpaceToView(_headView,0).bottomEqualToView(self.view).leftEqualToView(self.view).rightEqualToView(self.view);
+        _mapView = [[BMKMapView alloc]init];
+        _mapView.delegate = self;
+        [_mapView setZoomLevel:17];
+        
+        [self.view addSubview:_mapView];
+        _mapView.sd_layout.topSpaceToView(_headView,0).bottomEqualToView(self.view).leftEqualToView(self.view).rightEqualToView(self.view);
+ 
+        _locBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_locBtn settitle:@"开始定位" titleColor:[UIColor blackColor] font:15 image:nil];
+        [_locBtn addTarget:self action:@selector(openLocService) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_locBtn];
+        _locBtn.sd_layout.leftSpaceToView(self.view,15).bottomSpaceToView(self.view,15).widthIs(100).heightIs(40);
     }
     return _mapView;
+}
+
+-(void)openLocService{
+    
+    NSLog(@"进入跟随态");
+    [_locService startUserLocationService];
+    _mapView.userTrackingMode = BMKUserTrackingModeFollow;
+    _mapView.showsUserLocation = YES;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    _locService.delegate = self;
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
+    _locService.delegate = nil;
 }
 
 #pragma mark - btn事件
@@ -140,6 +183,55 @@ double const EPSILON = 0.0001;
 
 -(void)backBtn:(id)sender{
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+/**
+ *在地图View将要启动定位时，会调用此函数
+ *@param mapView 地图View
+ */
+- (void)willStartLocatingUser
+{
+    NSLog(@"start locate");
+}
+
+/**
+ *用户方向更新后，会调用此函数
+ *@param userLocation 新的用户位置
+ */
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    [_mapView updateLocationData:userLocation];
+    NSLog(@"heading is %@",userLocation.heading);
+}
+
+/**
+ *用户位置更新后，会调用此函数
+ *@param userLocation 新的用户位置
+ */
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    [_mapView updateLocationData:userLocation];
+}
+
+/**
+ *在地图View停止定位后，会调用此函数
+ *@param mapView 地图View
+ */
+- (void)didStopLocatingUser
+{
+    NSLog(@"stop locate");
+}
+
+/**
+ *定位失败后，会调用此函数
+ *@param mapView 地图View
+ *@param error 错误号，参考CLError.h中定义的错误号
+ */
+- (void)didFailToLocateUserWithError:(NSError *)error
+{
+    NSLog(@"location error");
 }
 
 @end

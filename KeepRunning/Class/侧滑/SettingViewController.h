@@ -17,10 +17,20 @@
  */
 @interface SettingHeadView : UIView
 
-@property (nonatomic , strong) UIButton *userImgButton;
+@property (nonatomic , strong) UIImageView *userImgView;
 
 @property (nonatomic , strong) UILabel *nameLabel;
 
 @property (nonatomic , strong) UILabel *informationLabel;
+
+@property (nonatomic , strong) UIButton *bgButton;
+
+@end
+
+@interface SettingTableViewCell : UITableViewCell
+
+@property (nonatomic , strong) UILabel * myTitleLabel;
+
+@property (nonatomic , strong) UIImageView *titleIconImageView;
 
 @end

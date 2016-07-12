@@ -35,7 +35,7 @@
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
     backButton.frame = CGRectMake(0,20,40,48);
     backButton.backgroundColor = [UIColor clearColor];
-    UIImage *image = [UIImage imageNamed:@"返回箭头"];
+    UIImage *image = [UIImage imageNamed:@"back"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [backButton setImage:image forState:UIControlStateNormal];
     [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0,0)];
